@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Geolocalizacion</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApLtDp0eW6hJNah65udd_-LhQB7VZCzfQ&callback=initMap&libraries=&v=weekly"
+        async
+      ></script>
+</head>
+<body>
+    <style type="text/css">
+
+        #map{
+            height: 100%;
+        }
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+
+<script type="text/javascript">
+    // Initialize and add the map
+    var lati=0;
+    var long=0;
+    var cord;
+    
+    function initMap() {
+      // The location of Uluru
+      let tes = navigator.geolocation.getCurrentPosition((position) => {
+  console.log("Acabo de terminar de obtener las coordenadas! Voy a devolver un valor.");
+  return {
+    lat: position.coords.latitude,
+    lang: position.coords.longitude,
+  };
+});    
+
+    //   if (!!navigator.geolocation) {
+    // //Pedimos los datos de geolocalizacion al navegador
+    //     cord=navigator.geolocation.getCurrentPosition(
+    //     //Si el navegador entrega los datos de geolocalizacion los imprimimos
+    //         function (position) {
+    //             // cord=position.coords;
+    //             // 
+
+    //                 return {
+    //                     lat: position.coords.latitude,
+    //                     lang: position.coords.longitude,
+    //                 };
+    //                 // lati=position.coords.latitude;
+    //                 // long=position.coords.longitude;
+    //                 // alert(cord.latitude);
+    //             },
+    //             //Si no los entrega manda un alerta de error
+    //             );
+    //             // alert(long);
+    //         }
+            // alert(cord.latitude);
+            console.log(tes);
+
+      const uluru = { lat: lati, lng: long };
+    //   vardump(uluru);
+      // The map, centered at Uluru
+      const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: uluru,
+        // lat: lati,
+        // lng: long
+        
+
+      });
+      // The marker, positioned at Uluru
+      const marker = new google.maps.Marker({
+        position: uluru,
+        map: map,
+      });
+    }
+</script>
+<div id="area-nav">
+<div><h2>Pide permisos de hubicacion al navegador</h2></div>
+<button id="pedirvan">Pedir permisos geolocalizacion navegador</button>
+<div id="nlat"></div>
+<div id="nlon"></div>
+</div>
+
+<div id="map"></div>
+</body>
+<script>
+$(document).ready(function () {
+//Click al boton para pedir permisos
+//Si el navegador soporta geolocalizacion
+    
+});
+
+
+
+</script>
+
+
+</html>
